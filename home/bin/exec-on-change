@@ -1,4 +1,21 @@
-#!/usr/bin/env bash
+#!/bin/bash -f
 
-echo "test"
+command="$1"
+shift
+fileSpec="$@"
+sentinel=/tmp/t.$$
 
+touch -t197001010000 $sentinel
+while :
+do
+  files=$(find . -newer $sentinel '(' $fileSpec ')')
+  if [ $? != 0 ]; then
+    exit 1;
+  fi
+  if [ "$files" != "" ]; then
+    echo $command
+    eval $command
+    touch $sentinel
+  fi
+  sleep 0.1
+done
