@@ -1,0 +1,15 @@
+#!/bin/bash
+
+MODE=$1
+STEP=$2
+
+case $MODE in
+  up) light -aq 10
+      notify-send 'Increase brightness' "Current value: `light -p`"
+    ;;
+  down) light -sq 10
+      notify-send 'Decrease brightness' "Current value: `light -p`"
+    ;;
+esac
+
+
