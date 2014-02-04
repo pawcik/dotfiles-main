@@ -63,7 +63,7 @@ mvn-color()
 }
  
 # Override the mvn command with the colorized one.
-#alias mvn="mvn-color"
+alias mvn="mvn-color"
 
 # aliases
 alias mvncie='mvn clean install eclipse:eclipse'
@@ -80,7 +80,7 @@ alias mvnag='mvn archetype:generate'
 function listMavenCompletions { 
      reply=(
         # common lifecycle
-        clean process-resources compile process-test-resources test-compile test package verify install deploy site
+        validate clean generate-sources process-resources compile process-test-resources test-compile test package integration-test verify install deploy site
         
         # common plugins
         deploy failsafe install site surefire checkstyle javadoc jxr pmd ant antrun archetype assembly dependency enforcer gpg help release repository source eclipse idea jetty cargo jboss tomcat tomcat6 tomcat7 exec versions war ear ejb android scm buildnumber nexus repository sonar license hibernate3 liquibase flyway gwt
@@ -194,3 +194,4 @@ function listMavenCompletions {
 }
 
 compctl -K listMavenCompletions mvn
+compctl -K listMavenCompletions mvnDebug
